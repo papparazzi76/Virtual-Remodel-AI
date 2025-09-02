@@ -1,0 +1,5 @@
+{
+  "name": "Virtual Remodel AI",
+  "description": "An AI-powered application that performs photorealistic virtual remodeling of rooms. Users can upload a photo, choose a remodeling type and style, and generate a high-quality image of their transformed space while preserving the original architecture.",
+  "requestFramePermissions": []
+}
