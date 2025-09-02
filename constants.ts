@@ -89,25 +89,25 @@ export const LANDING_PAGE_SAMPLES = [
     id: 'living-room',
     labelKey: 'samples.livingRoom',
     beforeSrc: 'https://images.pexels.com/photos/1866149/pexels-photo-1866149.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-    afterSrc: 'https://images.pexels.com/photos/6585626/pexels-photo-6585626.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    afterSrc: 'https://images.pexels.com/photos/33742512/pexels-photo-33742512.png',
   },
   {
     id: 'bedroom',
     labelKey: 'samples.bedroom',
-    beforeSrc: 'https://images.pexels.com/photos/376531/pexels-photo-376531.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-    afterSrc: 'https://images.pexels.com/photos/6438762/pexels-photo-6438762.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    beforeSrc: 'https://images.pexels.com/photos/33744344/pexels-photo-33744344.png',
+    afterSrc: 'https://images.pexels.com/photos/33744332/pexels-photo-33744332.png',
   },
   {
     id: 'bathroom',
     labelKey: 'samples.bathroom',
-    beforeSrc: 'https://images.pexels.com/photos/1080722/pexels-photo-1080722.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-    afterSrc: 'https://images.pexels.com/photos/6585759/pexels-photo-6585759.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    beforeSrc: 'https://images.pexels.com/photos/33744405/pexels-photo-33744405.png',
+    afterSrc: 'https://images.pexels.com/photos/33744450/pexels-photo-33744450.png',
   },
   {
     id: 'kitchen',
     labelKey: 'samples.kitchen',
-    beforeSrc: 'https://images.pexels.com/photos/2724749/pexels-photo-2724749.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-    afterSrc: 'https://images.pexels.com/photos/3074920/pexels-photo-3074920.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    beforeSrc: 'https://images.pexels.com/photos/33742790/pexels-photo-33742790.png',
+    afterSrc: 'https://images.pexels.com/photos/33743940/pexels-photo-33743940.png',
   }
 ] as const;
 
