@@ -3,7 +3,7 @@ import { RemodelingType, DecorStyle, Material, Lighting, CustomItem, RemodelMode
 
 // La URL de tu backend. Para desarrollo local, será localhost.
 // Cuando lo despliegues, tendrás que cambiarla por la URL de producción (ej: https://tu-backend.vercel.app)
-const BACKEND_URL = 'https://virtual-remodel-ia-backend.vercel.app/'; 
+const BACKEND_URL = 'https://virtual-remodel-ia-backend-e9hh.vercel.app/'; 
 
 interface MaterialSelections {
   wall: Material;
