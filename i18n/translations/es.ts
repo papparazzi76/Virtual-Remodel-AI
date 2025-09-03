@@ -69,7 +69,9 @@ export const es = {
     styleMode: "Estilo",
     customMode: "Personalizado",
     editMode: "Edición",
-    roomType: "Tipo de habitación"
+    roomType: "Tipo de habitación",
+    customPrompt: "Instrucciones para la IA",
+    customPromptPlaceholder: "p. ej., 'Coloca el sofá contra la pared del fondo y usa el mármol solo para el suelo.'"
   },
   imageUploader: {
     upload: "Haz clic para subir",
@@ -164,7 +166,7 @@ export const es = {
     door: "Puertas",
     window: "Ventanas",
     furniture: "Muebles",
-    appliances: "Electrodomésticos",
+    appliance: "Equipamiento",
     addItem: "Añadir Elemento",
     dropHere: "Suelta la imagen aquí...",
     uploadPrompt: "Haz clic o arrastra para subir",
@@ -192,7 +194,7 @@ export const es = {
     feature1Text: "No más conjeturas. Obtén variaciones de diseño de alta calidad en menos de un minuto.",
     feature2Title: "Estilos Infinitos",
     feature2Text: "Explora docenas de estilos, desde Moderno hasta Rústico, para encontrar tu combinación perfecta.",
-    feature3Title: "Calidad Fotorrealista",
+    feature3Title: "Qualidade Fotorrealista",
     feature3Text: "Nuestra IA preserva la arquitectura de tu habitación para obtener resultados creíbles e impresionantes.",
     pricingTitle: "Precio ajustado a cada necesidad",
     pricingSubtitle: "Un crédito equivale a una imagen generada. Empieza gratis y luego elige un plan que se ajuste a tus necesidades. Los créditos nunca caducan.",

@@ -1,3 +1,4 @@
+
 import React, { useState, useCallback, useRef } from 'react';
 import { Header } from './components/Header';
 import { ImageUploader } from './components/ImageUploader';
@@ -34,6 +35,7 @@ const MainApp: React.FC = () => {
   // Custom library state
   const { library, addItem, removeItem } = useCustomLibrary();
   const [selectedCustomItemIds, setSelectedCustomItemIds] = useState<Set<string>>(new Set());
+  const [customPrompt, setCustomPrompt] = useState<string>('');
   
   // Inpainting state
   const [inpaintingPrompt, setInpaintingPrompt] = useState<string>('');
@@ -96,6 +98,7 @@ const MainApp: React.FC = () => {
         materials: { wall: wallMaterial, floor: floorMaterial, ceiling: ceilingMaterial },
         // Custom mode params
         customItems: finalCustomItems,
+        customPrompt,
         // Inpainting mode params
         inpaintingPrompt,
         maskBase64Data: maskImage,
@@ -121,7 +124,7 @@ const MainApp: React.FC = () => {
     } finally {
       setIsLoading(false);
     }
-  }, [originalImage, originalMimeType, roomType, remodelMode, remodelingType, decorStyle, wallMaterial, floorMaterial, ceilingMaterial, lighting, library, selectedCustomItemIds, inpaintingPrompt, maskImage, isDemo, playSuccess, user, deductCredit, openPricingModal]);
+  }, [originalImage, originalMimeType, roomType, remodelMode, remodelingType, decorStyle, wallMaterial, floorMaterial, ceilingMaterial, lighting, library, selectedCustomItemIds, customPrompt, inpaintingPrompt, maskImage, isDemo, playSuccess, user, deductCredit, openPricingModal]);
 
   const handleDownload = () => {
     if (!generatedImage) return;
@@ -211,6 +214,8 @@ const MainApp: React.FC = () => {
                     removeCustomItem={removeItem}
                     selectedCustomItemIds={selectedCustomItemIds}
                     onToggleCustomItem={handleToggleCustomItem}
+                    customPrompt={customPrompt}
+                    setCustomPrompt={setCustomPrompt}
                     // Inpainting
                     inpaintingPrompt={inpaintingPrompt}
                     setInpaintingPrompt={setInpaintingPrompt}

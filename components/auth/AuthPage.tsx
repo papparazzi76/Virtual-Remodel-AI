@@ -98,12 +98,12 @@ const AuthPage: React.FC<AuthPageProps> = ({ onClose }) => {
                     </h1>
                 </div>
             
-                <h2 className="text-2xl font-bold text-center mb-6">
+                <h2 className="text-2xl font-bold text-center mb-6 text-gray-200">
                     {mode === 'login' ? t('auth.loginTitle') : t('auth.registerTitle')}
                 </h2>
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-gray-300">{t('auth.email')}</label>
+                        <label htmlFor="email" className="block text-sm font-medium text-gray-200">{t('auth.email')}</label>
                         <input
                             id="email"
                             type="email"
@@ -114,7 +114,7 @@ const AuthPage: React.FC<AuthPageProps> = ({ onClose }) => {
                         />
                     </div>
                     <div>
-                        <label htmlFor="password" className="block text-sm font-medium text-gray-300">{t('auth.password')}</label>
+                        <label htmlFor="password" className="block text-sm font-medium text-gray-200">{t('auth.password')}</label>
                         <input
                             id="password"
                             type="password"

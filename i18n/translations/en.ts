@@ -69,7 +69,9 @@ export const en = {
     styleMode: "Style",
     customMode: "Custom",
     editMode: "Edit",
-    roomType: "Room Type"
+    roomType: "Room Type",
+    customPrompt: "AI Instructions",
+    customPromptPlaceholder: "e.g., 'Place the sofa against the back wall and use the marble for the floor only.'"
   },
   imageUploader: {
     upload: "Click to upload",
@@ -164,7 +166,7 @@ export const en = {
     door: "Doors",
     window: "Windows",
     furniture: "Furniture",
-    appliances: "Appliances",
+    appliance: "Appliances",
     addItem: "Add Item",
     dropHere: "Drop image here...",
     uploadPrompt: "Click or drag to upload",

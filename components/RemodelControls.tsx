@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { RemodelingType, DecorStyle, Material, Lighting, CustomItem, CustomItemCategory, RemodelMode, RoomType } from '../types';
 import { DECOR_STYLES, MATERIALS, LIGHTING_OPTIONS, ROOM_TYPES } from '../constants';
@@ -29,6 +30,8 @@ interface RemodelControlsProps {
   removeCustomItem: (id: string) => void;
   selectedCustomItemIds: Set<string>;
   onToggleCustomItem: (id: string) => void;
+  customPrompt: string;
+  setCustomPrompt: (prompt: string) => void;
   // Inpainting
   inpaintingPrompt: string;
   setInpaintingPrompt: (prompt: string) => void;
@@ -88,7 +91,7 @@ export const RemodelControls: React.FC<RemodelControlsProps> = (props) => {
     wallMaterial, setWallMaterial, floorMaterial, setFloorMaterial,
     ceilingMaterial, setCeilingMaterial, lighting, setLighting,
     remodelMode, setRemodelMode, customLibrary, addCustomItem, removeCustomItem,
-    selectedCustomItemIds, onToggleCustomItem,
+    selectedCustomItemIds, onToggleCustomItem, customPrompt, setCustomPrompt,
     inpaintingPrompt, setInpaintingPrompt, brushSize, setBrushSize, onUndo, onClearMask
   } = props;
 
@@ -280,6 +283,20 @@ export const RemodelControls: React.FC<RemodelControlsProps> = (props) => {
                     </button>
                   ))}
                 </div>
+              </div>
+
+              <div>
+                <label htmlFor="custom-prompt" className="block text-sm font-medium text-gray-300 mb-2">
+                  {t('controls.customPrompt')}
+                </label>
+                <textarea
+                  id="custom-prompt"
+                  rows={3}
+                  value={customPrompt}
+                  onChange={(e) => setCustomPrompt(e.target.value)}
+                  placeholder={t('controls.customPromptPlaceholder')}
+                  className="w-full bg-gray-700 border border-gray-600 rounded-md px-3 py-2 text-white placeholder-gray-400 focus:ring-indigo-500 focus:border-indigo-500"
+                />
               </div>
               
               <div className="border-t border-gray-700 pt-4">

@@ -69,7 +69,9 @@ export const fr = {
     styleMode: "Style",
     customMode: "Personnalisé",
     editMode: "Édition",
-    roomType: "Type de pièce"
+    roomType: "Type de pièce",
+    customPrompt: "Instructions pour l'IA",
+    customPromptPlaceholder: "par ex., 'Placez le canapé contre le mur du fond et utilisez le marbre uniquement pour le sol.'"
   },
   imageUploader: {
     upload: "Cliquez pour télécharger",
@@ -164,7 +166,7 @@ export const fr = {
     door: "Portes",
     window: "Fenêtres",
     furniture: "Meubles",
-    appliances: "Appareils",
+    appliance: "Appareils",
     addItem: "Ajouter un élément",
     dropHere: "Déposez l'image ici...",
     uploadPrompt: "Cliquez ou glissez pour télécharger",

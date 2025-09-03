@@ -69,7 +69,9 @@ export const de = {
     styleMode: "Stil",
     customMode: "Benutzerdef.",
     editMode: "Bearbeiten",
-    roomType: "Raumtyp"
+    roomType: "Raumtyp",
+    customPrompt: "KI-Anweisungen",
+    customPromptPlaceholder: "z.B. 'Stellen Sie das Sofa an die Rückwand und verwenden Sie den Marmor nur für den Boden.'"
   },
   imageUploader: {
     upload: "Klicken zum Hochladen",
@@ -164,7 +166,7 @@ export const de = {
     door: "Türen",
     window: "Fenster",
     furniture: "Möbel",
-    appliances: "Geräte",
+    appliance: "Geräte",
     addItem: "Element hinzufügen",
     dropHere: "Bild hier ablegen...",
     uploadPrompt: "Klicken oder ziehen zum Hochladen",

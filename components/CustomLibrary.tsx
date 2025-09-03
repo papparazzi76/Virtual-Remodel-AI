@@ -16,6 +16,7 @@ interface CustomLibraryProps {
 }
 
 const CATEGORIES: CustomItemCategory[] = ['Wall Material', 'Floor Material', 'Door', 'Window', 'Furniture', 'Appliance'];
+const SUPPORTED_MIME_TYPES = ['image/png', 'image/jpeg', 'image/webp'];
 
 export const CustomLibrary: React.FC<CustomLibraryProps> = ({ library, addCustomItem, removeCustomItem, selectedItemIds, onToggleItem }) => {
   const { t } = useTranslation();
@@ -52,7 +53,7 @@ export const CustomLibrary: React.FC<CustomLibraryProps> = ({ library, addCustom
   };
 
   const handleFileChange = (selectedFile: File | null) => {
-    if (selectedFile && selectedFile.type.startsWith('image/')) {
+    if (selectedFile && SUPPORTED_MIME_TYPES.includes(selectedFile.type)) {
       setNewItemFile(selectedFile);
       setNewItemName(selectedFile.name.replace(/\.[^/.]+$/, ""));
       const reader = new FileReader();
@@ -60,6 +61,9 @@ export const CustomLibrary: React.FC<CustomLibraryProps> = ({ library, addCustom
         setNewItemPreview(reader.result as string);
       };
       reader.readAsDataURL(selectedFile);
+    } else if (selectedFile) {
+      // Silently ignore unsupported file types
+      console.warn(`Unsupported file type: ${selectedFile.type}`);
     }
   };
 
@@ -204,7 +208,7 @@ export const CustomLibrary: React.FC<CustomLibraryProps> = ({ library, addCustom
               onClick={() => document.getElementById('item-upload')?.click()}
               onDrop={handleDrop} onDragOver={handleDragOver} onDragEnter={handleDragEnter} onDragLeave={handleDragLeave}
             >
-              <input id="item-upload" type="file" className="hidden" accept="image/*" onChange={e => handleFileChange(e.target.files?.[0] ?? null)} />
+              <input id="item-upload" type="file" className="hidden" accept="image/png, image/jpeg, image/webp" onChange={e => handleFileChange(e.target.files?.[0] ?? null)} />
               {newItemPreview ? (
                 <img src={newItemPreview} alt="Preview" className="max-h-32 mx-auto rounded-md" />
               ) : (

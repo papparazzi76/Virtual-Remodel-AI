@@ -69,7 +69,9 @@ export const pt = {
     styleMode: "Estilo",
     customMode: "Personalizado",
     editMode: "Editar",
-    roomType: "Tipo de Quarto"
+    roomType: "Tipo de Quarto",
+    customPrompt: "Instruções para a IA",
+    customPromptPlaceholder: "ex., 'Coloque o sofá contra a parede dos fundos e use o mármore apenas para o chão.'"
   },
   imageUploader: {
     upload: "Clique para carregar",
@@ -164,7 +166,7 @@ export const pt = {
     door: "Portas",
     window: "Janelas",
     furniture: "Móveis",
-    appliances: "Eletrodomésticos",
+    appliance: "Eletrodomésticos",
     addItem: "Adicionar Item",
     dropHere: "Solte a imagem aqui...",
     uploadPrompt: "Clique ou arraste para carregar",

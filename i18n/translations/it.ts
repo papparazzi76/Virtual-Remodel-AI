@@ -69,7 +69,9 @@ export const it = {
     styleMode: "Stile",
     customMode: "Personalizzato",
     editMode: "Modifica",
-    roomType: "Tipo di stanza"
+    roomType: "Tipo di stanza",
+    customPrompt: "Istruzioni per l'IA",
+    customPromptPlaceholder: "es. 'Posiziona il divano contro la parete di fondo e usa il marmo solo per il pavimento.'"
   },
   imageUploader: {
     upload: "Clicca per caricare",
@@ -164,7 +166,7 @@ export const it = {
     door: "Porte",
     window: "Finestre",
     furniture: "Mobili",
-    appliances: "Elettrodomestici",
+    appliance: "Elettrodomestici",
     addItem: "Aggiungi Elemento",
     dropHere: "Rilascia l'immagine qui...",
     uploadPrompt: "Clicca o trascina per caricare",
