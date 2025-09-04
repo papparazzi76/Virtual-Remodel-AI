@@ -1,4 +1,3 @@
-
 export const fr = {
   appTitle: {
     virtual: "Virtual",
@@ -69,9 +68,39 @@ export const fr = {
     styleMode: "Style",
     customMode: "Personnalisé",
     editMode: "Édition",
+    materialMode: "Matériau par pièce",
     roomType: "Type de pièce",
     customPrompt: "Instructions pour l'IA",
-    customPromptPlaceholder: "par ex., 'Placez le canapé contre le mur du fond et utilisez le marbre uniquement pour le sol.'"
+    customPromptPlaceholder: "par ex., 'Placez le canapé contre le mur du fond et utilisez le marbre uniquement pour le sol.'",
+    // Material Mode
+    targetSurface: "Surface Cible",
+    walls: "Murs",
+    floor: "Sol",
+    materialFinish: "Finition du Matériau",
+    glossy: "Brillant",
+    matte: "Mat",
+    targetWall: "Mur Cible",
+    materialTexture: "Texture du Matériau",
+    pieceDimensions: "Dimensions réelles de la pièce (cm)",
+    pieceWidth: "Largeur (cm)",
+    pieceHeight: "Hauteur (cm)",
+    groutSettings: "Paramètres du joint",
+    grout: "Joint (mm)",
+    groutColor: "Couleur du joint",
+    tilingPattern: "Motif de pose",
+    tilingOffset: "Décalage (%)"
+  },
+  walls: {
+    left: "Gauche",
+    right: "Droite",
+    front: "Face",
+    all: "Tous"
+  },
+  tilingPatterns: {
+    grid: "Grille",
+    brick_50: "Brique 50%",
+    brick_custom: "Brique Pers.",
+    diagonal_45: "Diagonale 45°"
   },
   imageUploader: {
     upload: "Cliquez pour télécharger",
@@ -142,7 +171,11 @@ export const fr = {
     brightAiry: "Lumineux & Aéré",
     warmCozy: "Chaleureux & Confortable",
     coolModern: "Froid & Moderne",
-    dramaticDim: "Dramatique & Sombre"
+    dramaticDim: "Dramatique & Sombre",
+    goldenHour: "Heure Dorée",
+    studioLight: "Lumière de Studio",
+    nightTime: "Nocturne",
+    overcast: "Couvert"
   },
   samples: {
     livingRoom: "Salon",

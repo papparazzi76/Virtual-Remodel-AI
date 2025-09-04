@@ -1,4 +1,3 @@
-
 export const pt = {
   appTitle: {
     virtual: "Virtual",
@@ -69,9 +68,39 @@ export const pt = {
     styleMode: "Estilo",
     customMode: "Personalizado",
     editMode: "Editar",
+    materialMode: "Material por Peça",
     roomType: "Tipo de Quarto",
     customPrompt: "Instruções para a IA",
-    customPromptPlaceholder: "ex., 'Coloque o sofá contra a parede dos fundos e use o mármore apenas para o chão.'"
+    customPromptPlaceholder: "ex., 'Coloque o sofá contra a parede dos fundos e use o mármore apenas para o chão.'",
+    // Material Mode
+    targetSurface: "Superfície Alvo",
+    walls: "Paredes",
+    floor: "Piso",
+    materialFinish: "Acabamento do Material",
+    glossy: "Brilhante",
+    matte: "Fosco",
+    targetWall: "Parede Alvo",
+    materialTexture: "Textura do Material",
+    pieceDimensions: "Dimensões reais da peça (cm)",
+    pieceWidth: "Largura (cm)",
+    pieceHeight: "Altura (cm)",
+    groutSettings: "Configurações da junta",
+    grout: "Junta (mm)",
+    groutColor: "Cor da junta",
+    tilingPattern: "Padrão de assentamento",
+    tilingOffset: "Deslocamento (%)"
+  },
+  walls: {
+    left: "Esquerda",
+    right: "Direita",
+    front: "Frente",
+    all: "Todas"
+  },
+  tilingPatterns: {
+    grid: "Grade",
+    brick_50: "Tijolo 50%",
+    brick_custom: "Tijolo Pers.",
+    diagonal_45: "Diagonal 45°"
   },
   imageUploader: {
     upload: "Clique para carregar",
@@ -142,7 +171,11 @@ export const pt = {
     brightAiry: "Claro e Arejado",
     warmCozy: "Quente e Aconchegante",
     coolModern: "Frio e Moderno",
-    dramaticDim: "Dramático e Escuro"
+    dramaticDim: "Dramático e Escuro",
+    goldenHour: "Hora Dourada",
+    studioLight: "Luz de Estúdio",
+    nightTime: "Noturno",
+    overcast: "Nublado"
   },
   samples: {
     livingRoom: "Sala de Estar",

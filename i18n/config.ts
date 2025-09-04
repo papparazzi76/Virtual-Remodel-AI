@@ -42,8 +42,8 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
   const value = { locale, setLocale, t };
 
-  // FIX: Replaced JSX with React.createElement to resolve parsing errors in a .ts file.
-  // JSX syntax is not supported in .ts files by default, causing the compiler to misinterpret it as operators.
+  // FIX: Replaced JSX with React.createElement to fix parsing errors in a .ts file.
+  // The JSX syntax was causing errors because the file is not processed as a TSX file.
   return React.createElement(LanguageContext.Provider, { value }, children);
 };
 

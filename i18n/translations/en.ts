@@ -1,4 +1,3 @@
-
 export const en = {
   appTitle: {
     virtual: "Virtual",
@@ -69,9 +68,39 @@ export const en = {
     styleMode: "Style",
     customMode: "Custom",
     editMode: "Edit",
+    materialMode: "Piece Material",
     roomType: "Room Type",
     customPrompt: "AI Instructions",
-    customPromptPlaceholder: "e.g., 'Place the sofa against the back wall and use the marble for the floor only.'"
+    customPromptPlaceholder: "e.g., 'Place the sofa against the back wall and use the marble for the floor only.'",
+    // Material Mode
+    targetSurface: "Target Surface",
+    walls: "Walls",
+    floor: "Floor",
+    materialFinish: "Material Finish",
+    glossy: "Glossy",
+    matte: "Matte",
+    targetWall: "Target Wall",
+    materialTexture: "Material Texture",
+    pieceDimensions: "Real dimensions of the piece (cm)",
+    pieceWidth: "Width (cm)",
+    pieceHeight: "Height (cm)",
+    groutSettings: "Grout Settings",
+    grout: "Grout (mm)",
+    groutColor: "Grout Color",
+    tilingPattern: "Tiling Pattern",
+    tilingOffset: "Offset (%)"
+  },
+  walls: {
+    left: "Left",
+    right: "Right",
+    front: "Front",
+    all: "All"
+  },
+  tilingPatterns: {
+    grid: "Grid",
+    brick_50: "Brick 50%",
+    brick_custom: "Brick Custom",
+    diagonal_45: "Diagonal 45°"
   },
   imageUploader: {
     upload: "Click to upload",
@@ -142,7 +171,11 @@ export const en = {
     brightAiry: "Bright & Airy",
     warmCozy: "Warm & Cozy",
     coolModern: "Cool & Modern",
-    dramaticDim: "Dramatic & Dim"
+    dramaticDim: "Dramatic & Dim",
+    goldenHour: "Golden Hour",
+    studioLight: "Studio Light",
+    nightTime: "Night Time",
+    overcast: "Overcast"
   },
   samples: {
     livingRoom: "Living Room",

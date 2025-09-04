@@ -1,4 +1,3 @@
-
 export const it = {
   appTitle: {
     virtual: "Virtuale",
@@ -69,9 +68,39 @@ export const it = {
     styleMode: "Stile",
     customMode: "Personalizzato",
     editMode: "Modifica",
+    materialMode: "Materiale a pezzo",
     roomType: "Tipo di stanza",
     customPrompt: "Istruzioni per l'IA",
-    customPromptPlaceholder: "es. 'Posiziona il divano contro la parete di fondo e usa il marmo solo per il pavimento.'"
+    customPromptPlaceholder: "es. 'Posiziona il divano contro la parete di fondo e usa il marmo solo per il pavimento.'",
+     // Material Mode
+    targetSurface: "Superficie di destinazione",
+    walls: "Pareti",
+    floor: "Pavimento",
+    materialFinish: "Finitura Materiale",
+    glossy: "Lucido",
+    matte: "Opaco",
+    targetWall: "Parete di Destinazione",
+    materialTexture: "Texture materiale",
+    pieceDimensions: "Dimensioni reali del pezzo (cm)",
+    pieceWidth: "Larghezza (cm)",
+    pieceHeight: "Altezza (cm)",
+    groutSettings: "Impostazioni fuga",
+    grout: "Fuga (mm)",
+    groutColor: "Colore fuga",
+    tilingPattern: "Schema di posa",
+    tilingOffset: "Offset (%)"
+  },
+  walls: {
+    left: "Sinistra",
+    right: "Destra",
+    front: "Fronte",
+    all: "Tutte"
+  },
+  tilingPatterns: {
+    grid: "Griglia",
+    brick_50: "Mattone 50%",
+    brick_custom: "Mattone Pers.",
+    diagonal_45: "Diagonale 45°"
   },
   imageUploader: {
     upload: "Clicca per caricare",
@@ -142,7 +171,11 @@ export const it = {
     brightAiry: "Luminoso e Arioso",
     warmCozy: "Caldo e Accogliente",
     coolModern: "Fresco e Moderno",
-    dramaticDim: "Drammatico e Tenue"
+    dramaticDim: "Drammatico e Tenue",
+    goldenHour: "Ora d'Oro",
+    studioLight: "Luce da Studio",
+    nightTime: "Notturno",
+    overcast: "Nuvoloso"
   },
   samples: {
     livingRoom: "Soggiorno",

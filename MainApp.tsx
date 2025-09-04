@@ -1,11 +1,14 @@
-
 import React, { useState, useCallback, useRef } from 'react';
 import { Header } from './components/Header';
 import { ImageUploader } from './components/ImageUploader';
 import { RemodelControls } from './components/RemodelControls';
 import { ImageDisplay } from './components/ImageDisplay';
 import { Loader } from './components/Loader';
-import { RemodelingType, DecorStyle, Material, Lighting, CustomItem, RemodelMode, RoomType } from './types';
+import { 
+  RemodelingType, DecorStyle, Material, Lighting, CustomItem, 
+  RemodelMode, RoomType, TilingPattern, AnchorPoint, EdgeHandling, TargetSurface, 
+  MaterialFinish, TargetWall 
+} from './types';
 import { remodelImage } from './services/geminiService';
 import { DECOR_STYLES, MATERIALS, LIGHTING_OPTIONS, ROOM_TYPES } from './constants';
 import { useTranslation } from './i18n/config';
@@ -42,6 +45,22 @@ const MainApp: React.FC = () => {
   const [maskImage, setMaskImage] = useState<string | null>(null);
   const [brushSize, setBrushSize] = useState<number>(40);
   const imageEditorRef = useRef<ImageEditorRef>(null);
+  
+  // Material mode state
+  const [targetSurface, setTargetSurface] = useState<TargetSurface>('Walls');
+  const [materialFinish, setMaterialFinish] = useState<MaterialFinish>('matte');
+  const [targetWall, setTargetWall] = useState<TargetWall>('all');
+  const [materialTexture, setMaterialTexture] = useState<string | null>(null);
+  const [materialMimeType, setMaterialMimeType] = useState<string | null>(null);
+  const [pieceWidthCm, setPieceWidthCm] = useState<number>(10);
+  const [pieceHeightCm, setPieceHeightCm] = useState<number>(20);
+  const [groutThicknessMm, setGroutThicknessMm] = useState<number>(2);
+  const [groutColorHex, setGroutColorHex] = useState<string>('#FFFFFF');
+  const [tilingPattern, setTilingPattern] = useState<TilingPattern>('brick_50');
+  const [tilingOffsetPercent, setTilingOffsetPercent] = useState<number>(50);
+  const [pieceOrientation, setPieceOrientation] = useState<number>(0);
+  const [anchorPoint, setAnchorPoint] = useState<AnchorPoint>('center');
+  const [edgeHandling, setEdgeHandling] = useState<EdgeHandling>('clip');
 
   const { t } = useTranslation();
   const { user, isDemo, deductCredit, openPricingModal } = useAuth();
@@ -56,6 +75,15 @@ const MainApp: React.FC = () => {
     };
     reader.readAsDataURL(file);
     setOriginalMimeType(file.type);
+  }, []);
+
+  const handleMaterialTextureChange = useCallback((file: File) => {
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setMaterialTexture(reader.result as string);
+    };
+    reader.readAsDataURL(file);
+    setMaterialMimeType(file.type);
   }, []);
 
   const handleGenerate = useCallback(async () => {
@@ -102,6 +130,21 @@ const MainApp: React.FC = () => {
         // Inpainting mode params
         inpaintingPrompt,
         maskBase64Data: maskImage,
+        // Material mode params
+        targetSurface,
+        materialFinish,
+        targetWall,
+        materialTexture,
+        materialMimeType,
+        pieceWidthCm,
+        pieceHeightCm,
+        groutThicknessMm,
+        groutColorHex,
+        tilingPattern,
+        tilingOffsetPercent,
+        pieceOrientation,
+        anchorPoint,
+        edgeHandling,
       });
 
       let finalImage = `data:image/png;base64,${result}`;
@@ -120,11 +163,19 @@ const MainApp: React.FC = () => {
       }
     } catch (e) {
       console.error(e);
-      setError("messages.errorGenerate");
+      setError((e as Error).message || "messages.errorGenerate");
     } finally {
       setIsLoading(false);
     }
-  }, [originalImage, originalMimeType, roomType, remodelMode, remodelingType, decorStyle, wallMaterial, floorMaterial, ceilingMaterial, lighting, library, selectedCustomItemIds, customPrompt, inpaintingPrompt, maskImage, isDemo, playSuccess, user, deductCredit, openPricingModal]);
+  }, [
+    originalImage, originalMimeType, roomType, remodelMode, remodelingType, 
+    decorStyle, wallMaterial, floorMaterial, ceilingMaterial, lighting, library, 
+    selectedCustomItemIds, customPrompt, inpaintingPrompt, maskImage, isDemo, 
+    playSuccess, user, deductCredit, openPricingModal, targetSurface, materialFinish, 
+    targetWall, materialTexture, materialMimeType, pieceWidthCm, pieceHeightCm, 
+    groutThicknessMm, groutColorHex, tilingPattern, tilingOffsetPercent, 
+    pieceOrientation, anchorPoint, edgeHandling
+  ]);
 
   const handleDownload = () => {
     if (!generatedImage) return;
@@ -223,6 +274,33 @@ const MainApp: React.FC = () => {
                     setBrushSize={setBrushSize}
                     onUndo={handleUndo}
                     onClearMask={handleClearMask}
+                    // Material Mode
+                    targetSurface={targetSurface}
+                    setTargetSurface={setTargetSurface}
+                    materialFinish={materialFinish}
+                    setMaterialFinish={setMaterialFinish}
+                    targetWall={targetWall}
+                    setTargetWall={setTargetWall}
+                    materialTexture={materialTexture}
+                    onMaterialTextureChange={handleMaterialTextureChange}
+                    pieceWidthCm={pieceWidthCm}
+                    setPieceWidthCm={setPieceWidthCm}
+                    pieceHeightCm={pieceHeightCm}
+                    setPieceHeightCm={setPieceHeightCm}
+                    groutThicknessMm={groutThicknessMm}
+                    setGroutThicknessMm={setGroutThicknessMm}
+                    groutColorHex={groutColorHex}
+                    setGroutColorHex={setGroutColorHex}
+                    tilingPattern={tilingPattern}
+                    setTilingPattern={setTilingPattern}
+                    tilingOffsetPercent={tilingOffsetPercent}
+                    setTilingOffsetPercent={setTilingOffsetPercent}
+                    pieceOrientation={pieceOrientation}
+                    setPieceOrientation={setPieceOrientation}
+                    anchorPoint={anchorPoint}
+                    setAnchorPoint={setAnchorPoint}
+                    edgeHandling={edgeHandling}
+                    setEdgeHandling={setEdgeHandling}
                   />
                   <div className="mt-8 space-y-4">
                     <button

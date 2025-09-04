@@ -1,4 +1,3 @@
-
 export const de = {
   appTitle: {
     virtual: "Virtual",
@@ -69,9 +68,39 @@ export const de = {
     styleMode: "Stil",
     customMode: "Benutzerdef.",
     editMode: "Bearbeiten",
+    materialMode: "Stückmaterial",
     roomType: "Raumtyp",
     customPrompt: "KI-Anweisungen",
-    customPromptPlaceholder: "z.B. 'Stellen Sie das Sofa an die Rückwand und verwenden Sie den Marmor nur für den Boden.'"
+    customPromptPlaceholder: "z.B. 'Stellen Sie das Sofa an die Rückwand und verwenden Sie den Marmor nur für den Boden.'",
+     // Material Mode
+    targetSurface: "Zieloberfläche",
+    walls: "Wände",
+    floor: "Boden",
+    materialFinish: "Materialoberfläche",
+    glossy: "Glänzend",
+    matte: "Matt",
+    targetWall: "Zielwand",
+    materialTexture: "Materialtextur",
+    pieceDimensions: "Echte Abmessungen des Stücks (cm)",
+    pieceWidth: "Breite (cm)",
+    pieceHeight: "Höhe (cm)",
+    groutSettings: "Fugeneinstellungen",
+    grout: "Fuge (mm)",
+    groutColor: "Fugenfarbe",
+    tilingPattern: "Verlegemuster",
+    tilingOffset: "Versatz (%)"
+  },
+  walls: {
+    left: "Links",
+    right: "Rechts",
+    front: "Vorne",
+    all: "Alle"
+  },
+  tilingPatterns: {
+    grid: "Gitter",
+    brick_50: "Ziegel 50%",
+    brick_custom: "Ziegel Benut.",
+    diagonal_45: "Diagonal 45°"
   },
   imageUploader: {
     upload: "Klicken zum Hochladen",
@@ -142,7 +171,11 @@ export const de = {
     brightAiry: "Hell & Luftig",
     warmCozy: "Warm & Gemütlich",
     coolModern: "Kühl & Modern",
-    dramaticDim: "Dramatisch & Dunkel"
+    dramaticDim: "Dramatisch & Dunkel",
+    goldenHour: "Goldene Stunde",
+    studioLight: "Studiolicht",
+    nightTime: "Nachtzeit",
+    overcast: "Bedeckt"
   },
   samples: {
     livingRoom: "Wohnzimmer",

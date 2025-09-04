@@ -27,7 +27,11 @@ export type Lighting =
   | 'Bright & Airy'
   | 'Warm & Cozy'
   | 'Cool & Modern'
-  | 'Dramatic & Dim';
+  | 'Dramatic & Dim'
+  | 'Golden Hour'
+  | 'Studio Light'
+  | 'Night Time'
+  | 'Overcast';
 
 export type RoomType =
   | 'Master Bedroom'
@@ -65,7 +69,16 @@ export interface PermanentItem {
   src: string;
 }
 
-export type RemodelMode = 'style' | 'custom' | 'inpainting';
+export type RemodelMode = 'style' | 'custom' | 'inpainting' | 'material';
+
+// --- New Types for Material by Piece ---
+export type TilingPattern = 'grid' | 'brick_50' | 'brick_custom' | 'diagonal_45';
+export type AnchorPoint = 'top-left' | 'center';
+export type EdgeHandling = 'clip' | 'extend';
+export type TargetSurface = 'Walls' | 'Floor';
+export type MaterialFinish = 'glossy' | 'matte';
+export type TargetWall = 'left' | 'right' | 'front' | 'all';
+
 
 // --- New Types for Authentication ---
 export type UserRole = 'Guest' | 'Paid' | 'Admin';

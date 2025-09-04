@@ -1,4 +1,3 @@
-
 export const es = {
   appTitle: {
     virtual: "Virtual",
@@ -69,9 +68,39 @@ export const es = {
     styleMode: "Estilo",
     customMode: "Personalizado",
     editMode: "Edición",
+    materialMode: "Material por piezas",
     roomType: "Tipo de habitación",
     customPrompt: "Instrucciones para la IA",
-    customPromptPlaceholder: "p. ej., 'Coloca el sofá contra la pared del fondo y usa el mármol solo para el suelo.'"
+    customPromptPlaceholder: "p. ej., 'Coloca el sofá contra la pared del fondo y usa el mármol solo para el suelo.'",
+    // Material Mode
+    targetSurface: "Superficie de destino",
+    walls: "Paredes",
+    floor: "Suelo",
+    materialFinish: "Acabado del material",
+    glossy: "Brillo",
+    matte: "Mate",
+    targetWall: "Pared de destino",
+    materialTexture: "Textura del material",
+    pieceDimensions: "Dimensiones reales de la pieza (cm)",
+    pieceWidth: "Ancho (cm)",
+    pieceHeight: "Alto (cm)",
+    groutSettings: "Ajustes de junta",
+    grout: "Junta (mm)",
+    groutColor: "Color de junta",
+    tilingPattern: "Patrón de colocación",
+    tilingOffset: "Offset (%)"
+  },
+  walls: {
+    left: "Izquierda",
+    right: "Derecha",
+    front: "Frente",
+    all: "Todas"
+  },
+  tilingPatterns: {
+    grid: "Rejilla",
+    brick_50: "Espiga 50%",
+    brick_custom: "Espiga Pers.",
+    diagonal_45: "Diagonal 45°"
   },
   imageUploader: {
     upload: "Haz clic para subir",
@@ -142,7 +171,11 @@ export const es = {
     brightAiry: "Luminoso y Aireado",
     warmCozy: "Cálido y Acogedor",
     coolModern: "Fresco y Moderno",
-    dramaticDim: "Dramático y Tenue"
+    dramaticDim: "Dramático y Tenue",
+    goldenHour: "Hora Dorada",
+    studioLight: "Luz de Estudio",
+    nightTime: "Nocturno",
+    overcast: "Nublado"
   },
   samples: {
     livingRoom: "Sala de Estar",

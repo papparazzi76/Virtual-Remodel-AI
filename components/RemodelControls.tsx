@@ -1,11 +1,15 @@
-
-import React from 'react';
-import { RemodelingType, DecorStyle, Material, Lighting, CustomItem, CustomItemCategory, RemodelMode, RoomType } from '../types';
+import React, { useState, useCallback } from 'react';
+import { 
+  RemodelingType, DecorStyle, Material, Lighting, CustomItem, 
+  CustomItemCategory, RemodelMode, RoomType, TilingPattern, AnchorPoint, 
+  EdgeHandling, TargetSurface, MaterialFinish, TargetWall 
+} from '../types';
 import { DECOR_STYLES, MATERIALS, LIGHTING_OPTIONS, ROOM_TYPES } from '../constants';
 import { useTranslation } from '../i18n/config';
 import { CustomLibrary } from './CustomLibrary';
 import { InpaintingControls } from './InpaintingControls';
 import { useSound } from '../context/SoundContext';
+import { UploadIcon } from './icons/UploadIcon';
 
 interface RemodelControlsProps {
   roomType: RoomType;
@@ -39,6 +43,33 @@ interface RemodelControlsProps {
   setBrushSize: (size: number) => void;
   onUndo: () => void;
   onClearMask: () => void;
+  // Material Mode
+  targetSurface: TargetSurface;
+  setTargetSurface: (surface: TargetSurface) => void;
+  materialFinish: MaterialFinish;
+  setMaterialFinish: (finish: MaterialFinish) => void;
+  targetWall: TargetWall;
+  setTargetWall: (wall: TargetWall) => void;
+  materialTexture: string | null;
+  onMaterialTextureChange: (file: File) => void;
+  pieceWidthCm: number;
+  setPieceWidthCm: (width: number) => void;
+  pieceHeightCm: number;
+  setPieceHeightCm: (height: number) => void;
+  groutThicknessMm: number;
+  setGroutThicknessMm: (thickness: number) => void;
+  groutColorHex: string;
+  setGroutColorHex: (color: string) => void;
+  tilingPattern: TilingPattern;
+  setTilingPattern: (pattern: TilingPattern) => void;
+  tilingOffsetPercent: number;
+  setTilingOffsetPercent: (offset: number) => void;
+  pieceOrientation: number;
+  setPieceOrientation: (orientation: number) => void;
+  anchorPoint: AnchorPoint;
+  setAnchorPoint: (anchor: AnchorPoint) => void;
+  edgeHandling: EdgeHandling;
+  setEdgeHandling: (handling: EdgeHandling) => void;
 }
 
 interface MaterialPickerProps {
@@ -82,6 +113,112 @@ const MaterialPicker: React.FC<MaterialPickerProps> = ({ labelKey, materials, se
   );
 };
 
+const MaterialControls: React.FC<Pick<RemodelControlsProps, 'targetSurface'|'setTargetSurface'|'materialFinish'|'setMaterialFinish'|'targetWall'|'setTargetWall'|'materialTexture'|'onMaterialTextureChange'|'pieceWidthCm'|'setPieceWidthCm'|'pieceHeightCm'|'setPieceHeightCm'|'groutThicknessMm'|'setGroutThicknessMm'|'groutColorHex'|'setGroutColorHex'|'tilingPattern'|'setTilingPattern'|'tilingOffsetPercent'|'setTilingOffsetPercent'|'pieceOrientation'|'setPieceOrientation'|'anchorPoint'|'setAnchorPoint'|'edgeHandling'|'setEdgeHandling'>> = (props) => {
+    const { t } = useTranslation();
+    const { playClick } = useSound();
+    const [isDragging, setIsDragging] = useState(false);
+
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      if (e.target.files && e.target.files[0]) {
+        props.onMaterialTextureChange(e.target.files[0]);
+      }
+    };
+     const handleDrop = useCallback((e: React.DragEvent<HTMLDivElement>) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setIsDragging(false);
+        if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+          props.onMaterialTextureChange(e.dataTransfer.files[0]);
+        }
+    }, [props.onMaterialTextureChange]);
+
+    const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => { e.preventDefault(); e.stopPropagation(); };
+    const handleDragEnter = (e: React.DragEvent<HTMLDivElement>) => { e.preventDefault(); e.stopPropagation(); setIsDragging(true); };
+    const handleDragLeave = (e: React.DragEvent<HTMLDivElement>) => { e.preventDefault(); e.stopPropagation(); setIsDragging(false); };
+    
+    return (
+        <div className="space-y-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-300 mb-2">{t('controls.targetSurface')}</label>
+            <div className="grid grid-cols-2 gap-2">
+                <button onClick={() => props.setTargetSurface('Walls')} className={`px-4 py-2 text-sm font-semibold rounded-md transition-colors duration-200 ${props.targetSurface === 'Walls' ? 'bg-indigo-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'}`}>{t('controls.walls')}</button>
+                <button onClick={() => props.setTargetSurface('Floor')} className={`px-4 py-2 text-sm font-semibold rounded-md transition-colors duration-200 ${props.targetSurface === 'Floor' ? 'bg-indigo-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'}`}>{t('controls.floor')}</button>
+            </div>
+          </div>
+
+          {props.targetSurface === 'Walls' && (
+            <div>
+              <label className="block text-sm font-medium text-gray-300 mb-2">{t('controls.targetWall')}</label>
+              <div className="grid grid-cols-4 gap-2">
+                {(['left', 'right', 'front', 'all'] as TargetWall[]).map(wall => (
+                  <button key={wall} onClick={() => props.setTargetWall(wall)} className={`px-2 py-2 text-xs font-semibold rounded-md transition-colors duration-200 ${props.targetWall === wall ? 'bg-indigo-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'}`}>{t(`walls.${wall}`)}</button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <div>
+            <label className="block text-sm font-medium text-gray-300 mb-2">{t('controls.materialFinish')}</label>
+            <div className="grid grid-cols-2 gap-2">
+                <button onClick={() => props.setMaterialFinish('glossy')} className={`px-4 py-2 text-sm font-semibold rounded-md transition-colors duration-200 ${props.materialFinish === 'glossy' ? 'bg-indigo-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'}`}>{t('controls.glossy')}</button>
+                <button onClick={() => props.setMaterialFinish('matte')} className={`px-4 py-2 text-sm font-semibold rounded-md transition-colors duration-200 ${props.materialFinish === 'matte' ? 'bg-indigo-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'}`}>{t('controls.matte')}</button>
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-300 mb-2">{t('controls.materialTexture')}</label>
+            <div
+                className={`border-2 border-dashed rounded-lg p-4 text-center cursor-pointer transition-colors duration-300 ${isDragging ? 'border-indigo-500 bg-gray-700/50' : 'border-gray-600 hover:border-indigo-500'}`}
+                onClick={() => document.getElementById('material-texture-upload')?.click()}
+                onDrop={handleDrop} onDragOver={handleDragOver} onDragEnter={handleDragEnter} onDragLeave={handleDragLeave}
+            >
+                <input id="material-texture-upload" type="file" className="hidden" accept="image/png, image/jpeg, image/webp" onChange={handleFileChange} />
+                 {props.materialTexture ? (
+                    <img src={props.materialTexture} alt="Texture Preview" className="max-h-24 mx-auto rounded-md" />
+                ) : (
+                    <div className="flex flex-col items-center">
+                        <UploadIcon className="w-8 h-8 text-gray-500 mb-1" />
+                        <p className="font-semibold text-xs text-gray-300">{t('customLibrary.uploadPrompt')}</p>
+                    </div>
+                )}
+            </div>
+          </div>
+          
+          <div>
+            <label className="block text-sm font-medium text-gray-300 mb-2">{t('controls.pieceDimensions')}</label>
+            <div className="grid grid-cols-2 gap-2">
+                <input type="number" value={props.pieceWidthCm} onChange={e => props.setPieceWidthCm(Number(e.target.value))} placeholder={t('controls.pieceWidth')} className="w-full bg-gray-700 border border-gray-600 rounded-md px-3 py-2 text-white placeholder-gray-400 focus:ring-indigo-500 focus:border-indigo-500" />
+                <input type="number" value={props.pieceHeightCm} onChange={e => props.setPieceHeightCm(Number(e.target.value))} placeholder={t('controls.pieceHeight')} className="w-full bg-gray-700 border border-gray-600 rounded-md px-3 py-2 text-white placeholder-gray-400 focus:ring-indigo-500 focus:border-indigo-500" />
+            </div>
+          </div>
+
+           <div>
+            <label className="block text-sm font-medium text-gray-300 mb-2">{t('controls.groutSettings')}</label>
+            <div className="grid grid-cols-2 gap-2">
+                <input type="number" value={props.groutThicknessMm} onChange={e => props.setGroutThicknessMm(Number(e.target.value))} placeholder={t('controls.grout')} className="w-full bg-gray-700 border border-gray-600 rounded-md px-3 py-2 text-white placeholder-gray-400 focus:ring-indigo-500 focus:border-indigo-500" />
+                <input type="color" value={props.groutColorHex} onChange={e => props.setGroutColorHex(e.target.value)} title={t('controls.groutColor')} className="w-full h-10 bg-gray-700 border border-gray-600 rounded-md cursor-pointer" />
+            </div>
+          </div>
+
+          <div>
+              <label className="block text-sm font-medium text-gray-300 mb-2">{t('controls.tilingPattern')}</label>
+              <div className="grid grid-cols-2 gap-2">
+                  {(['grid', 'brick_50', 'brick_custom', 'diagonal_45'] as TilingPattern[]).map(p => 
+                    <button key={p} onClick={() => props.setTilingPattern(p)} className={`px-4 py-2 text-sm font-semibold rounded-md transition-colors duration-200 ${props.tilingPattern === p ? 'bg-indigo-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'}`}>{t(`tilingPatterns.${p}`)}</button>
+                  )}
+              </div>
+          </div>
+
+          {props.tilingPattern === 'brick_custom' && (
+              <div>
+                  <label htmlFor="offset" className="block text-sm font-medium text-gray-300 mb-2">{t('controls.tilingOffset')} {props.tilingOffsetPercent}%</label>
+                  <input id="offset" type="range" min="0" max="100" value={props.tilingOffsetPercent} onChange={e => props.setTilingOffsetPercent(Number(e.target.value))} className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-indigo-500"/>
+              </div>
+          )}
+        </div>
+    );
+};
+
 
 export const RemodelControls: React.FC<RemodelControlsProps> = (props) => {
   const { t } = useTranslation();
@@ -119,10 +256,10 @@ export const RemodelControls: React.FC<RemodelControlsProps> = (props) => {
     <div className="space-y-6">
       <div>
         <label className="block text-sm font-medium text-gray-300 mb-2">{t('controls.mode')}</label>
-        <div className="grid grid-cols-3 gap-2">
+        <div className="grid grid-cols-4 gap-2">
           <button
             onClick={() => handleModeChange('style')}
-            className={`px-4 py-2 text-sm font-semibold rounded-md transition-colors duration-200 ${
+            className={`px-3 py-2 text-xs font-semibold rounded-md transition-colors duration-200 ${
               remodelMode === 'style' ? 'bg-indigo-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
             }`}
           >
@@ -130,15 +267,23 @@ export const RemodelControls: React.FC<RemodelControlsProps> = (props) => {
           </button>
           <button
             onClick={() => handleModeChange('custom')}
-            className={`px-4 py-2 text-sm font-semibold rounded-md transition-colors duration-200 ${
+            className={`px-3 py-2 text-xs font-semibold rounded-md transition-colors duration-200 ${
               remodelMode === 'custom' ? 'bg-indigo-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
             }`}
           >
             {t('controls.customMode')}
           </button>
            <button
+            onClick={() => handleModeChange('material')}
+            className={`px-3 py-2 text-xs font-semibold rounded-md transition-colors duration-200 ${
+              remodelMode === 'material' ? 'bg-indigo-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+            }`}
+          >
+            {t('controls.materialMode')}
+          </button>
+           <button
             onClick={() => handleModeChange('inpainting')}
-            className={`px-4 py-2 text-sm font-semibold rounded-md transition-colors duration-200 ${
+            className={`px-3 py-2 text-xs font-semibold rounded-md transition-colors duration-200 ${
               remodelMode === 'inpainting' ? 'bg-indigo-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
             }`}
           >
@@ -309,6 +454,8 @@ export const RemodelControls: React.FC<RemodelControlsProps> = (props) => {
                   />
               </div>
           </div>
+        ) : remodelMode === 'material' ? (
+            <MaterialControls {...props} />
         ) : (
              <InpaintingControls
                 prompt={inpaintingPrompt}

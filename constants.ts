@@ -43,6 +43,10 @@ export const LIGHTING_OPTIONS: LightingOption[] = [
   { value: 'Warm & Cozy', labelKey: 'lightingLabels.warmCozy' },
   { value: 'Cool & Modern', labelKey: 'lightingLabels.coolModern' },
   { value: 'Dramatic & Dim', labelKey: 'lightingLabels.dramaticDim' },
+  { value: 'Golden Hour', labelKey: 'lightingLabels.goldenHour' },
+  { value: 'Studio Light', labelKey: 'lightingLabels.studioLight' },
+  { value: 'Night Time', labelKey: 'lightingLabels.nightTime' },
+  { value: 'Overcast', labelKey: 'lightingLabels.overcast' },
 ];
 
 interface RoomTypeOption {
